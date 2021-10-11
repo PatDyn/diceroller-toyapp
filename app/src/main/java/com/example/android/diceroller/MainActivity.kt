@@ -18,10 +18,13 @@ package com.example.android.diceroller
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.diceroller.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +51,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // random number after click
-        binding.resultText.text = (Random.nextInt(6) + 1).toString()
+        val drawableResource = when
+                ((Random.nextInt(6) + 1).toString()) {
+                    "1" -> R.drawable.dice_1
+                    "2" -> R.drawable.dice_2
+                    "3" -> R.drawable.dice_3
+                    "4" -> R.drawable.dice_4
+                    "5" -> R.drawable.dice_5
+                    else -> R.drawable.dice_6
+        }
+
+        val diceImage: ImageView = binding.diceImage
+        diceImage.setImageResource(drawableResource)
+
     }
 }
