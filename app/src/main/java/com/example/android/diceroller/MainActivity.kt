@@ -18,9 +18,11 @@ package com.example.android.diceroller
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.diceroller.databinding.ActivityMainBinding
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     // private lateinit var binding: ActivityMainBinding
@@ -32,15 +34,20 @@ class MainActivity : AppCompatActivity() {
        //  val rollButton = findViewById<Button>(R.id.roll_button)
        //  rollButton.text = "Lets Roll"
 
-        // this somehow overrides the main_activity.xml gravity
+        // inflate the layout
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // binding.root.setVerticalGravity(2)
-        binding.rollButton.text = "Throw Dice"
-        binding.rollButton.setOnClickListener { Toast.makeText(
-            this,
-            "button clicked",
-            Toast.LENGTH_SHORT).show()}
 
+        binding.rollButton.setOnClickListener {
+            rollDice(binding)
+        }
+
+    }
+
+    private fun rollDice(binding: ActivityMainBinding ) {
+        setContentView(binding.root)
+
+        // random number after click
+        binding.resultText.text = (Random.nextInt(6) + 1).toString()
     }
 }
