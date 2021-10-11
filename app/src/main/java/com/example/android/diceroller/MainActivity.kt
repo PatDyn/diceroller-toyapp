@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                     "5" -> R.drawable.dice_5
                     else -> R.drawable.dice_6
         }
+
         diceImage.setImageResource(drawableResource)
 
     }
