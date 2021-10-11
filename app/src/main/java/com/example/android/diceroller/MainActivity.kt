@@ -16,6 +16,7 @@
 
 package com.example.android.diceroller
 
+import android.media.Image
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -28,7 +29,8 @@ import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    // private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+    lateinit var diceImage: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,17 +40,20 @@ class MainActivity : AppCompatActivity() {
        //  rollButton.text = "Lets Roll"
 
         // inflate the layout
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.rollButton.setOnClickListener {
-            rollDice(binding)
+            rollDice()
         }
+
+        // after initializing the variable, create a field here
+        // diceImage is not instantiated every time the button is clicked
+        diceImage = binding.diceImage
 
     }
 
-    private fun rollDice(binding: ActivityMainBinding ) {
-        setContentView(binding.root)
+    private fun rollDice() {
 
         // random number after click
         val drawableResource = when
@@ -60,8 +65,6 @@ class MainActivity : AppCompatActivity() {
                     "5" -> R.drawable.dice_5
                     else -> R.drawable.dice_6
         }
-
-        val diceImage: ImageView = binding.diceImage
         diceImage.setImageResource(drawableResource)
 
     }
